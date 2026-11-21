@@ -1,0 +1,26 @@
+name: Private Add-on Sync
+version: "0.1.0"
+slug: private_addon_sync
+description: Installs add-ons from private GitHub repositories using a personal access token.
+url: https://github.com/A7QG59F2/ha-private-addon-sync
+arch:
+  - aarch64
+  - amd64
+  - armv7
+init: false
+startup: services
+boot: auto
+hassio_api: true
+hassio_role: manager
+map:
+  - addons:rw
+options:
+  github_token: ""
+  repositories: []
+  sync_interval_minutes: 60
+schema:
+  github_token: password
+  repositories:
+    - repo: match(^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$)
+      branch: str?
+  sync_interval_minutes: int(0,1440)
